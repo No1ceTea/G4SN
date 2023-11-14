@@ -10,6 +10,9 @@ import Bottombar from "@/components/shared/Bottombar";
 import RightSidebar from "@/components/shared/RightSidebar";
 import Topbar from "@/components/shared/Topbar";
 
+import { Analytics } from '@vercel/analytics/react';
+
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -30,6 +33,7 @@ export default function RootLayout({
     >
       <html lang='fr'>
         <body className={inter.className}>
+          <Analytics />
           <Topbar />
 
           <main className='flex flex-row'>
