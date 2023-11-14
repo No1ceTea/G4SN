@@ -13,8 +13,8 @@ import Topbar from "@/components/shared/Topbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Threads",
-  description: "A Next.js 13 Meta Threads application",
+  title: "G4Hub",
+  description: "Un réseau social pour G4 build avec Next.js 13",
 };
 
 export default function RootLayout({
@@ -28,7 +28,7 @@ export default function RootLayout({
         baseTheme: dark,
       }}
     >
-      <html lang='en'>
+      <html lang='fr'>
         <body className={inter.className}>
           <Topbar />
 
