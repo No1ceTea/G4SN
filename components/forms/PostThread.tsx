@@ -61,7 +61,7 @@ function PostThread({ userId }: Props) {
           render={({ field }) => (
             <FormItem className='flex w-full flex-col gap-3'>
               <FormLabel className='text-base-semibold text-light-2'>
-                Content
+                Contenu
               </FormLabel>
               <FormControl className='no-focus border border-dark-4 bg-dark-3 text-light-1'>
                 <Textarea rows={15} {...field} />
@@ -72,7 +72,7 @@ function PostThread({ userId }: Props) {
         />
 
         <Button type='submit' className='bg-primary-500'>
-          Post Thread
+          Poster
         </Button>
       </form>
     </Form>

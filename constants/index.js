@@ -2,43 +2,43 @@ export const sidebarLinks = [
   {
     imgURL: "/assets/home.svg",
     route: "/",
-    label: "Home",
+    label: "G4Hub",
   },
   {
     imgURL: "/assets/search.svg",
     route: "/search",
-    label: "Search",
+    label: "Recherche",
   },
   {
     imgURL: "/assets/heart.svg",
     route: "/activity",
-    label: "Activity",
+    label: "Notifications",
   },
   {
     imgURL: "/assets/create.svg",
     route: "/create-thread",
-    label: "Create Thread",
+    label: "Créez un Thread",
   },
   {
     imgURL: "/assets/community.svg",
     route: "/communities",
-    label: "Communities",
+    label: "Communautés",
   },
   {
     imgURL: "/assets/user.svg",
     route: "/profile",
-    label: "Profile",
+    label: "Profil",
   },
 ];
 
 export const profileTabs = [
   { value: "threads", label: "Threads", icon: "/assets/reply.svg" },
-  { value: "replies", label: "Replies", icon: "/assets/members.svg" },
-  { value: "tagged", label: "Tagged", icon: "/assets/tag.svg" },
+  { value: "replies", label: "Réponses", icon: "/assets/members.svg" },
+  { value: "tagged", label: "Tag", icon: "/assets/tag.svg" },
 ];
 
 export const communityTabs = [
   { value: "threads", label: "Threads", icon: "/assets/reply.svg" },
-  { value: "members", label: "Members", icon: "/assets/members.svg" },
-  { value: "requests", label: "Requests", icon: "/assets/request.svg" },
+  { value: "members", label: "Membres", icon: "/assets/members.svg" },
+  { value: "requests", label: "Demandes", icon: "/assets/request.svg" },
 ];
