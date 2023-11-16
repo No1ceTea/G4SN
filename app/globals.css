@@ -15,7 +15,7 @@
 
   /* Activity */
   .activity-card {
-    @apply flex items-center gap-2 rounded-md bg-dark-2 px-7 py-4;
+    @apply flex items-center gap-2 rounded-md bg-light-2 px-7 py-4;
   }
 
   /* No Result */
@@ -25,11 +25,11 @@
 
   /* Community Card */
   .community-card {
-    @apply w-full rounded-lg bg-dark-3 px-4 py-5 sm:w-96;
+    @apply w-full rounded-lg bg-violet-900 px-4 py-5 sm:w-96;
   }
 
   .community-card_btn {
-    @apply rounded-lg bg-primary-500 px-5 py-1.5 text-small-regular !text-light-1 !important;
+    @apply rounded-lg bg-violet-400 px-5 py-1.5 text-small-regular !text-light-1 !important;
   }
 
   /* thread card  */
@@ -47,23 +47,23 @@
   }
 
   .user-card_btn {
-    @apply h-auto min-w-[74px] rounded-lg bg-primary-500 text-[12px] text-light-1 !important;
+    @apply h-auto min-w-[74px] rounded-lg bg-primary-500 hover:bg-primary-500 text-[12px] text-light-1 !important;
   }
 
   .searchbar {
-    @apply flex gap-1 rounded-lg bg-dark-3 px-4 py-2;
+    @apply flex gap-1 rounded-lg bg-white px-4 py-2;
   }
 
   .searchbar_input {
-    @apply border-none bg-dark-3 text-base-regular text-light-4 outline-none !important;
+    @apply border-none bg-gray-300 text-base-regular text-light-4 outline-none !important;
   }
 
   .topbar {
-    @apply fixed top-0 z-30 flex w-full items-center justify-between bg-white px-6 py-3;
+    @apply fixed top-0 z-30 flex w-full items-center justify-between bg-violet-800 px-6 py-3;
   }
 
   .bottombar {
-    @apply fixed bottom-0 z-10 w-full rounded-t-3xl bg-glassmorphism p-4 backdrop-blur-lg xs:px-7 md:hidden;
+    @apply fixed bottom-0 z-10 w-full rounded-t-3xl   bg-glassmorphism p-4 backdrop-blur-lg xs:px-7 md:hidden;
   }
 
   .bottombar_container {
@@ -131,7 +131,7 @@
 
 /* Tab */
 .tab {
-  @apply flex min-h-[50px] flex-1 items-center gap-3 bg-dark-2 text-light-2 data-[state=active]:bg-[#0e0e12] data-[state=active]:text-light-2 !important;
+  @apply flex min-h-[50px] flex-1 items-center gap-3 bg-violet-800 text-light-2 data-[state=active]:bg-[#75529E] data-[state=active]:text-light-2 !important;
 }
 
 .no-focus {

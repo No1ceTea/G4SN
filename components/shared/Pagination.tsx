@@ -36,17 +36,17 @@ function Pagination({ pageNumber, isNext, path }: Props) {
       <Button
         onClick={() => handleNavigation("prev")}
         disabled={pageNumber === 1}
-        className='!text-small-regular text-light-2'
+        className='!text-small-regular text-dark-2'
       >
-        Prev
+        Page précédente
       </Button>
-      <p className='text-small-semibold text-light-1'>{pageNumber}</p>
+      <p className='text-small-semibold text-dark-1'>{pageNumber}</p>
       <Button
         onClick={() => handleNavigation("next")}
         disabled={!isNext}
-        className='!text-small-regular text-light-2'
+        className='!text-small-regular text-dark-2'
       >
-        Next
+        Page suivante
       </Button>
     </div>
   );
