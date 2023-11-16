@@ -34,7 +34,7 @@
 
   /* thread card  */
   .thread-card_bar {
-    @apply relative mt-2 w-0.5 grow rounded-full bg-white;
+    @apply relative mt-2 w-0.5 grow rounded-full bg-dark-4;
   }
 
   /* User card */

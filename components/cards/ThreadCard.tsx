@@ -42,7 +42,7 @@ function ThreadCard({
   return (
     <article
       className={`flex w-full flex-col rounded-xl ${
-        isComment ? "px-0 xs:px-7" : "bg-violet-900 p-7"
+        isComment ? "px-0 xs:px-7" : "bg-purple-400 p-7"
       }`}
     >
       <div className='flex items-start justify-between'>
@@ -62,12 +62,12 @@ function ThreadCard({
 
           <div className='flex w-full flex-col'>
             <Link href={`/profile/${author.id}`} className='w-fit'>
-              <h4 className='cursor-pointer text-base-semibold text-light-1'>
+              <h4 className='cursor-pointer text-base-semibold text-dark-1'>
                 {author.name}
               </h4>
             </Link>
 
-            <p className='mt-2 text-small-regular text-light-2'>{content}</p>
+            <p className='mt-2 text-small-regular text-dark-2'>{content}</p>
 
             <div className={`${isComment && "mb-10"} mt-5 flex flex-col gap-3`}>
               <div className='flex gap-3.5'>
@@ -105,8 +105,8 @@ function ThreadCard({
 
               {isComment && comments.length > 0 && (
                 <Link href={`/thread/${id}`}>
-                  <p className='mt-1 text-subtle-medium text-white'>
-                    {comments.length} repl{comments.length > 1 ? "ies" : "y"}
+                  <p className='mt-1 text-subtle-medium text-black'>
+                    {comments.length} répons{comments.length > 1 ? "es" : "e"}
                   </p>
                 </Link>
               )}
@@ -137,8 +137,8 @@ function ThreadCard({
           ))}
 
           <Link href={`/thread/${id}`}>
-            <p className='mt-1 text-subtle-medium text-white'>
-              {comments.length} repl{comments.length > 1 ? "ies" : "y"}
+            <p className='mt-1 text-subtle-medium text-black'>
+              {comments.length} répons{comments.length > 1 ? "es" : "e"}
             </p>
           </Link>
         </div>
@@ -149,7 +149,7 @@ function ThreadCard({
           href={`/communities/${community.id}`}
           className='mt-5 flex items-center'
         >
-          <p className='text-subtle-medium text-white'>
+          <p className='text-subtle-medium text-black'>
             {formatDateString(createdAt)}
             {community && ` - ${community.name} Community`}
           </p>
