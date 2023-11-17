@@ -7,7 +7,7 @@ function Topbar() {
   return (
     <nav className='topbar'>
       <Link href='/' className='flex items-center gap-4'>
-        <Image src='/logo.svg' alt='logo' width={28} height={28} />
+        <Image src='/G4.svg' alt='logo' width={28} height={28} />
         <p className='text-heading3-bold text-white hover:text-pink-400 max-xs:hidden'>G4Hub</p>
       </Link>
 
