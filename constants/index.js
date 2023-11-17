@@ -25,6 +25,7 @@ export const sidebarLinks = [
     label: "Communautés",
   },
   {
+    imgURL: "/assets/user.svg",
     route: "/calendar",
     label: "Calendrier",
   },
