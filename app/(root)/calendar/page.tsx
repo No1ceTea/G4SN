@@ -19,9 +19,6 @@ interface Event {
 }
 
 
-//console.log(getAllEvent())
-
-
 
 export default function Home() {
   const [events, setEvents] = useState([
@@ -54,17 +51,6 @@ export default function Home() {
         }
       })
     }
-    const fetchData = async () => { console.log('ça CHARGEEEEEEE')
-      try {
-        const events = await getAllEvent();
-        console.log('Événements récupérés :', events);
-        // Faites quelque chose avec les événements ici
-      } catch (error) {
-        console.error('Erreur lors de la récupération des événements :', error);
-      }
-    };
-  
-    fetchData(); // Appel côté client
   
   }, [])
 
@@ -76,6 +62,7 @@ export default function Home() {
   function addEvent(data: DropArg) {
     const event = { ...newEvent, start: data.date.toISOString(), title: data.draggedEl.innerText, allDay: data.allDay, id: new Date().getTime() }
     setAllEvents([...allEvents, event])
+    console.log(event)
   }
 
   function handleDeleteModal(data: { event: { id: string } }) {
@@ -122,33 +109,59 @@ export default function Home() {
     addEventCalendar(newEvent)
     console.log(newEvent)
   }
-
-/*
-  async function load() {
-  try {
-    const events = await getAllEvent();
-    console.log('Événements récupérés :', events);
-    // Faites quelque chose avec les événements ici
-  } catch (error) {
-    console.error('Erreur lors de la récupération des événements :');
+  function convertirFormatDate(dateStr: string): string {
+    // Créer un objet Date à partir de la première chaîne de date
+    const date = new Date(dateStr);
+  
+    // Extraire les composants de date et d'heure
+    const annee = date.getFullYear();
+    const mois = (date.getMonth() + 1).toString().padStart(2, '0'); // Les mois sont indexés à partir de zéro
+    const jour = date.getDate().toString().padStart(2, '0');
+    const heures = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const secondes = date.getSeconds().toString().padStart(2, '0');
+  
+    // Créer la chaîne de date au format souhaité
+    const dateFormatee = `${annee}-${mois}-${jour}T${heures}:${minutes}:${secondes}.000Z`;
+  
+    return dateFormatee;
   }
-}
-*/
-
 
   function handleLoading(e: Event) {
-    //e.preventDefault()
-    setAllEvents([...allEvents, newEvent])
-    setNewEvent({
-      title: e.title,
-      start: e.start,
-      allDay: e.allDay,
-      id: e.id
-    })
-    console.log(newEvent)
+    const newDate = convertirFormatDate(e.start.toString())
+    console.log(newDate)
+
+    const event = { ...newEvent, start: newDate, title: e.title, allDay: e.allDay, id: e.id }
+    setAllEvents([...allEvents, event])
+    console.log(event)
   }
 
+  function charge(){
+    console.log("load events")
 
+   // Utiliser la fonction getAllEvent
+    getAllEvent()
+    .then((events: Event[]) => {
+      // Utiliser forEach pour itérer sur le tableau
+      events.forEach((event: Event) => {
+        // Accéder aux propriétés id, title, start, et allDay de chaque objet Event
+        console.log(`ID: ${event.id}, Titre: ${event.title}, Start: ${event.start}, All day: ${event.allDay}`);
+        const e: Event = {
+          id: event.id, // Vous pouvez générer un nouvel ID selon vos besoins
+          title: event.title,
+          start: event.start,
+          allDay: event.allDay,
+        };
+        handleLoading(e);
+      });
+    })
+    .catch((error) => {
+      console.error('Erreur lors de la récupération des événements', error);
+    });
+  }
+  
+
+  
 
   return (
     <>
@@ -193,7 +206,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-
+        <button onClick={charge}>Voir mon calendrier</button>
         <Transition.Root show={showDeleteModal} as={Fragment}>
           <Dialog as="div" className="relative z-10" onClose={setShowDeleteModal}>
             <Transition.Child
@@ -328,6 +341,7 @@ export default function Home() {
             </div>
           </Dialog>
         </Transition.Root>
+       
       </main >
     </>
 
