@@ -68,8 +68,8 @@ function Comment({ threadId, currentUserImg, currentUserId }: Props) {
                 <Input
                   type='text'
                   {...field}
-                  placeholder='Comment...'
-                  className='no-focus text-light-1 outline-none'
+                  placeholder='Commentaire...'
+                  className='no-focus text-dark-1 outline-none'
                 />
               </FormControl>
             </FormItem>
