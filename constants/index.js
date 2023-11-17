@@ -25,6 +25,10 @@ export const sidebarLinks = [
     label: "Communautés",
   },
   {
+    route: "/calendar",
+    label: "Calendrier",
+  },
+  {
     imgURL: "/assets/user.svg",
     route: "/profile",
     label: "Profil",
