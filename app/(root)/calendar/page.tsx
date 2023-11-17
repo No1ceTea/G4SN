@@ -7,7 +7,9 @@ import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon, ExclamationTriangleIcon } from '@heroicons/react/20/solid'
 import { EventSourceInput } from '@fullcalendar/core/index.js'
-
+import {addEventCalendar} from '../../../lib/actions/calendar.actions'
+import {deleteEventCalendar} from '../../../lib/actions/calendar.actions'
+import {getAllEvent} from '../../../lib/actions/calendar.actions'
 
 interface Event {
   title: string;
@@ -16,13 +18,17 @@ interface Event {
   id: number;
 }
 
+
+//console.log(getAllEvent())
+
+
+
 export default function Home() {
   const [events, setEvents] = useState([
-    { title: 'event 1', id: '1' },
-    { title: 'event 2', id: '2' },
-    { title: 'event 3', id: '3' },
-    { title: 'event 4', id: '4' },
-    { title: 'event 5', id: '5' },
+    { title: 'réunion Paris', id: '1' },
+    { title: 'réunion Marseille', id: '2' },
+    { title: 'réunion Lyon', id: '3' },
+    { title: 'Conférence', id: '4' },
   ])
   const [allEvents, setAllEvents] = useState<Event[]>([])
   const [showModal, setShowModal] = useState(false)
@@ -48,6 +54,18 @@ export default function Home() {
         }
       })
     }
+    const fetchData = async () => { console.log('ça CHARGEEEEEEE')
+      try {
+        const events = await getAllEvent();
+        console.log('Événements récupérés :', events);
+        // Faites quelque chose avec les événements ici
+      } catch (error) {
+        console.error('Erreur lors de la récupération des événements :', error);
+      }
+    };
+  
+    fetchData(); // Appel côté client
+  
   }, [])
 
   function handleDateClick(arg: { date: Date, allDay: boolean }) {
@@ -63,6 +81,7 @@ export default function Home() {
   function handleDeleteModal(data: { event: { id: string } }) {
     setShowDeleteModal(true)
     setIdToDelete(Number(data.event.id))
+    deleteEventCalendar(Number(data.event.id))
   }
 
   function handleDelete() {
@@ -100,12 +119,41 @@ export default function Home() {
       allDay: false,
       id: 0
     })
+    addEventCalendar(newEvent)
+    console.log(newEvent)
   }
+
+/*
+  async function load() {
+  try {
+    const events = await getAllEvent();
+    console.log('Événements récupérés :', events);
+    // Faites quelque chose avec les événements ici
+  } catch (error) {
+    console.error('Erreur lors de la récupération des événements :');
+  }
+}
+*/
+
+
+  function handleLoading(e: Event) {
+    //e.preventDefault()
+    setAllEvents([...allEvents, newEvent])
+    setNewEvent({
+      title: e.title,
+      start: e.start,
+      allDay: e.allDay,
+      id: e.id
+    })
+    console.log(newEvent)
+  }
+
+
 
   return (
     <>
       <nav className="flex justify-between mb-15 border-b border-violet-100 p-4">
-        <h1 className="font-bold text-2xl text-violet-700">Calendar</h1>
+        <h1 className="font-bold text-2xl text-violet-700">Calendrier</h1>
       </nav>
       <main className="flex min-h-screen flex-col items-center justify-between p-18">
         <div className="grid grid-cols-10">
@@ -133,7 +181,7 @@ export default function Home() {
             />
           </div>
           <div id="draggable-el" className="ml-8 w-full border-2 p-2 rounded-md mt-16 lg:h-2/3 bg-violet-500">
-            <h1 className="font-bold text-lg text-center text-gray-100">Drag Event</h1>
+            <h1 className="font-bold text-lg text-center text-gray-100">Event</h1>
             {events.map(event => (
               <div
                 className="fc-event border-2 p-1 m-2 w-full rounded-md ml-auto text-center bg-white"
@@ -187,7 +235,7 @@ export default function Home() {
                           </Dialog.Title>
                           <div className="mt-2">
                             <p className="text-sm text-gray-500">
-                              Are you sure you want to delete this event?
+                              êtes-vous sur de vouloir supprimer cette événement ?
                             </p>
                           </div>
                         </div>
@@ -243,7 +291,7 @@ export default function Home() {
                       </div>
                       <div className="mt-3 text-center sm:mt-5">
                         <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900">
-                          Add Event
+                          Ajouter un événement
                         </Dialog.Title>
                         <form action="submit" onSubmit={handleSubmit}>
                           <div className="mt-2">
@@ -260,7 +308,7 @@ export default function Home() {
                               className="inline-flex w-full justify-center rounded-md bg-violet-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600 sm:col-start-2 disabled:opacity-25"
                               disabled={newEvent.title === ''}
                             >
-                              Create
+                              Créer
                             </button>
                             <button
                               type="button"
@@ -268,7 +316,7 @@ export default function Home() {
                               onClick={handleCloseModal}
 
                             >
-                              Cancel
+                              Annuler
                             </button>
                           </div>
                         </form>
@@ -282,5 +330,6 @@ export default function Home() {
         </Transition.Root>
       </main >
     </>
+
   )
 }
